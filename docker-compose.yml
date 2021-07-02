@@ -12,6 +12,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    volumes:
+      - media-data:/data/media
     # environment:
     depends_on:
       - mongodb
@@ -21,12 +23,23 @@ services:
     restart: always
     #environment: # 환경 변수
     volumes:
-      - type: bind
-        source: ./data/db
-        target: /data/db
+      - mongo-data:/data/db
     container_name: "mongodb"
     ports:
       - "27017:27017"
 
+volumes:
+  media-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data/media
+      o: bind
+  mongo-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data/db
+      o: bind
 
     
