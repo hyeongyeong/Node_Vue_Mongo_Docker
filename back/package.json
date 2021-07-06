@@ -5,9 +5,22 @@
   "author": "kohy0329@naver.com",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "build": "npx typescript",
+    "build:watch": "npx typescript -w",
+    "dev": "npx concurrently \"npm run build\" \"npm run dev:run\"",
+    "dev:watch": "npx concurrently \"npm run build:watch\" \"npm run dev:run\"",
+    "dev:run": "npx nodemon lib/index.js",
+    "start": "node lib/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "1.19.1",
+    "swagger-jsdoc": "^6.1.0",
+    "swagger-ui-express": "^4.1.6",
+    "typescript": "^3.7.3"
   }
 }

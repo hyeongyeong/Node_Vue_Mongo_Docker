@@ -1,19 +1,27 @@
 version: '2.0'
 services:
-  web:
-    build: './front'
-    ports:
-      - "3000:3000"
-    expose:
-      - "3000"
+  # web:
+  #   build: './front'
+  #   ports:
+  #     - "3000:3000"
+  #   expose:
+  #     - "3000"
+  #   volumes:
+  #     - ./front:/app:cached
+  #     - /app/node_modules
+  #   stdin_open: true
+  #   environment: 
+  #     - CHOKIDAR_USEPOLLING=true
 
   node:
     build: './back'
+    #command: npm run dev:watch
     restart: always
     ports:
       - "8080:8080"
     volumes:
       - media-data:/data/media
+      - ./back:/app:cached
     # environment:
     depends_on:
       - mongodb
@@ -24,7 +32,7 @@ services:
     #environment: # 환경 변수
     volumes:
       - mongo-data:/data/db
-    container_name: "mongodb"
+    container_name: "mongodb"   
     ports:
       - "27017:27017"
 
