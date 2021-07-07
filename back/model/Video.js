@@ -20,6 +20,9 @@
  *            sequence:
  *              type: integer
  *              description: 시리즈 안의 비디오 순서
+ *            img_path:
+ *              type: string
+ *              description: 비디오의 Thumbnail 이미지 경로
  *            file_path:
  *              type: string
  *              description: 비디오 파일 경로
@@ -44,6 +47,7 @@ const VideoSchema = new Schema({
     name: {type: String},
     sequence: {type: Number},
     file_path: {type: String},
+    img_path: {type: String},
     category: {type: Number, ref: 'Category'},
     date: {type: Date, default: Date.now}
   });
