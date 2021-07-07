@@ -2,25 +2,28 @@
  * @swagger
  *  components:
  *    schemas:
- *      Video:
+ *      Category:
  *          type: object
  *          required:
  *            - name
+ *            - child_category
+ *            - depth
+ *            - update_date
+ *            - img_path
  *            - sequence
- *            - file_path
- *            - category
- *            - date
  *          properties:
  *            name:
  *              type: string
+ *            child_category:
+ *              type: integer
+ *            depth:
+ *              type: integer
+ *            update_date:
+ *              type: string
+ *            img_path:
+ *              type: string
  *            sequence:
  *              type: integer
- *            file_path:
- *              type: string
- *            category:
- *              type: string
- *            date:
- *              type: string
  * 
  */
 
