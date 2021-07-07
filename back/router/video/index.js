@@ -14,7 +14,7 @@
   *  /video:
   *    get:
   *      summary: Select Video
-  *      tags:   [Videos]
+  *      tags: [Videos]
   *      response:
   *        "200" :
   *          description: A Video Schemas
@@ -23,16 +23,30 @@
   *              schema:
   *                $ref: '#components/schemas/Video'
   */
-//   router.get('/', videoCtrl.getAllVideo);
+  router.get('/', videoCtrl.getAllVideo);
 
   /**
   * @swagger
   * paths:
   *  /video:
   *    post:
-  *      summary: Select Video
-  *      tags:   [Videos]
+  *      tags: [Videos]
+  *      summary: "Add a new video"
+  *      operationId: "addVideo"
+  *      consumes:
+  *        - "application/json"
+  *      produces:
+  *        - "application/json"
+  *      parameters:
+  *        - in: "body"
+  *          name: "body"
+  *          description: "Video object that needs to be upload"
+  *          required: true
+  *          schema:
+  *            $ref: "#/components/schemas/Video"
   *      response:
+  *        "405":
+  *          description: "Invalid input"
   *        "200" :
   *          description: A Video Schemas
   *          content:

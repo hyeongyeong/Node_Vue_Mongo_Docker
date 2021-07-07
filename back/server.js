@@ -33,9 +33,17 @@ app.use((req, res, next) => {
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useNewUrlParser', true);
+mongoose.connect(config.dbUrl(), {useUnifiedTopology:true});
 
-mongoose.connect(config.dbUrl());
-autoIncrement.initialize(mongoose.connection);
+var db = mongoose.connection;
+db.on('error', function(){
+  console.log('Connection Failed!');
+});
+db.once('open', function() {
+  console.log('Connected!');
+});
+
+autoIncrement.initialize(db);
 
 app.use('/', require('./router'));
 app.use('/files', express.static(__dirname + '/data'));

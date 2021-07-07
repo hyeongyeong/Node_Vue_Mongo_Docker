@@ -5,15 +5,12 @@
  *      Video:
  *          type: object
  *          required:
- *            - _id
  *            - name
  *            - sequence
  *            - file_path
  *            - category
  *            - date
  *          properties:
- *            _id:
- *              type: ObjectId
  *            name:
  *              type: string
  *              description: 비디오 명
@@ -27,10 +24,10 @@
  *              type: string
  *              description: 비디오 파일 경로
  *            category:
- *              type: ObjectId
+ *              type: string
  *              description: 비디오가 속한 최하위 카테고리 id
  *            date:
- *              type: Date
+ *              type: string
  *              description: 비디오가 업로드된 날짜
  * 
  */
