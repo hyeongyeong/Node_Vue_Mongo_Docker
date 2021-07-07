@@ -1,5 +1,5 @@
 const path = require('path');
-const Video = require('../../models/category');
+const Video = require('../../model/Video');
 const config = require('../../config/server.config');
 const multer = require('multer');
 

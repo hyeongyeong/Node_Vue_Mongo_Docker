@@ -3,7 +3,9 @@
 const config = require('./config/server.config');
 const express = require('express');
 const bodyParser  = require('body-parser');
+const cors = require('cors');
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 
 const {swaggerUi, specs} = require('./swagger');
 
@@ -17,15 +19,27 @@ app.get('/', (req, res) => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// [CONFIGURATE CORS]
+app.use(cors())
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type")
+    next()
+})
+
+
 // [CONFIGURE MONGOOSE]
 mongoose.set('useCreateIndex', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useNewUrlParser', true);
 
 mongoose.connect(config.dbUrl());
+autoIncrement.initialize(mongoose.connection);
 
+app.use('/', require('./router'));
+app.use('/files', express.static(__dirname + '/data'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
 
 app.listen(config.serverPort, config.serverHost);
 console.log(`Running on http://${config.serverHost}:${config.serverPort}`);
-

@@ -23,7 +23,7 @@
   *              schema:
   *                $ref: '#components/schemas/Video'
   */
-  router.get('/', videoCtrl.getAllVideo);
+//   router.get('/', videoCtrl.getAllVideo);
 
   /**
   * @swagger

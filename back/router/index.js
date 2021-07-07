@@ -4,3 +4,5 @@ const video = require('./video');
 
 router.use('/category', category);
 router.use('/video', video);
+
+module.exports = router;

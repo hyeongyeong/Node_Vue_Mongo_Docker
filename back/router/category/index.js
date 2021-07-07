@@ -25,7 +25,7 @@
   *               schema:
   *                 $ref: '#components/schemas/Category'
   */
-  router.get('/', categoryCtrl.getAllCategory);
+//   router.get('/', categoryCtrl.getAllCategory);
   
    /**
   * @swagger
@@ -43,6 +43,6 @@
   *                 $ref: '#components/schemas/Category'
   */
 
-    router.get('/', categoryCtrl.createCategory);
+    // router.post('/', categoryCtrl.createCategory);
 
   module.exports = router;

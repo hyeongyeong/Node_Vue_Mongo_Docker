@@ -20,7 +20,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - media-data:/data/media
+      - media-data:/data
       - ./back:/app:cached
     # environment:
     depends_on:
