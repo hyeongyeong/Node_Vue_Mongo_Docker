@@ -7,7 +7,7 @@ services:
   #   expose:
   #     - "3000"
   #   volumes:
-  #     - front:/app:cached
+  #     - ./front:/app:cached
   #     - /app/node_modules
   #   stdin_open: true
   #   environment: 
@@ -21,7 +21,7 @@ services:
       - "8080:8080"
     volumes:
       - media-data:/data/media
-      - back:/app:cached
+      - ./back:/app:cached
     # environment:
     depends_on:
       - mongodb
@@ -49,18 +49,6 @@ volumes:
     driver_opts:
       type: none
       device: ${PWD}/data/db
-      o: bind
-  front:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/front
-      o: bind
-  back:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${PWD}/back
       o: bind
 
 
