@@ -7,12 +7,12 @@ const options = {
         info: {
             title: 'Beaver Block Express Service with Swagger',
             version: '1.0.0',
-            description: 'a Rest Api usting swagger and express',
+            description: 'a Rest Api using swagger and express',
         },
         host: 'localhost:8080',
         basePath: '/'
     },
-    apis: ['./router/*.js', './model/*.js']
+    apis: ['./router/**/*.js', './model/*.js']
 };
 
 const specs = swaggereJsdoc(options);

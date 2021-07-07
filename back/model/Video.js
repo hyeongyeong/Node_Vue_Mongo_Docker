@@ -16,14 +16,19 @@
  *              type: ObjectId
  *            name:
  *              type: string
+ *              description: 비디오 명
  *            sequence:
  *              type: integer
+ *              description: 시리즈 안의 비디오 순서
  *            file_path:
  *              type: string
+ *              description: 비디오 파일 경로
  *            category:
  *              type: ObjectId
+ *              description: 비디오가 속한 최하위 카테고리 id
  *            date:
  *              type: Date
+ *              description: 비디오가 업로드된 날짜
  * 
  */
 const mongoose = require('mongoose');
