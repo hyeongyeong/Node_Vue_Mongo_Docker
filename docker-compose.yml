@@ -22,20 +22,27 @@ services:
     volumes:
       - media-data:/data
       - ./back:/app:cached
+    networks:
+      - babybeaver-network
     # environment:
     depends_on:
       - mongodb
     
   mongodb:
-    image: mongo
+    image: mongo:4.4.1-bionic
     restart: always
-    #environment: # 환경 변수
+    environment: 
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: babybeaver
+      MONGO_INITDB_DATABASE: babybeaver
     volumes:
       - mongo-data:/data/db
     container_name: "mongodb"
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "rs0" ]   
+    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all"]   
     ports:
       - "27017:27017"
+    networks:
+      - babybeaver-network
 
 volumes:
   media-data:
@@ -51,5 +58,6 @@ volumes:
       device: ${PWD}/data/db
       o: bind
 
+networks:
+  babybeaver-network:
 
-    
