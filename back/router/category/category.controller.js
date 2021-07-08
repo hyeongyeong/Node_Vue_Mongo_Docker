@@ -1,0 +1,29 @@
+const path = require('path');
+const Category = require('../../model/Category');
+const config = require('../../config/server.config');
+const multer = require('multer');
+
+function uploadFile(){
+
+}
+
+exports.createCategory = (req, res) => {
+    var newCategory = new Category({
+        name: req.body.name,
+        file_path: req.body.file_path,
+        depth: 0, // TODO: need to edit
+        img_path: req.body.img_path,
+        sequence: req.body.sequence,
+    });
+    newCategory.save(function (err) {
+        if (err) return res.json(err);
+        return res.json(newCategory);
+    });
+};
+
+exports.getAllCategory = (req, res) => {
+    Category.find({}, (err, category) => {
+        if (err) return res.status(500).send(err); // 500 error
+        return res.json(category);
+    });
+};

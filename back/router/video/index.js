@@ -13,9 +13,11 @@
   * paths:
   *  /video:
   *    get:
-  *      summary: Select Video
   *      tags: [Videos]
-  *      response:
+  *      summary: "Get All Videoes"
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
   *        "200" :
   *          description: A Video Schemas
   *          content:

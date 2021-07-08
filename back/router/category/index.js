@@ -10,39 +10,48 @@
  const categoryCtrl = require('./category.controller');
  
 
- /**
+  /**
   * @swagger
   * paths:
-  *   /category:
-  *     get:
-  *       summary: Select Category
-  *       tags:   [Categories]
-  *       response:
-  *         "200" :
-  *           description: A Category Schemas
-  *           content:
-  *             application/json:
-  *               schema:
-  *                 $ref: '#components/schemas/Category'
+  *  /category:
+  *    get:
+  *      tags: [Categories]
+  *      summary: "Get All Categories"
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: A Category Schemas
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Category'
   */
-//   router.get('/', categoryCtrl.getAllCategory);
-  
-   /**
-  * @swagger
-  * paths:
-  *   /category:
-  *     post:
-  *       summary: Select Category
-  *       tags:   [Categories]
-  *       response:
-  *         "200" :
-  *           description: A Category Schemas
-  *           content:
-  *             application/json:
-  *               schema:
-  *                 $ref: '#components/schemas/Category'
-  */
+   router.get('/', categoryCtrl.getAllCategory);
 
-    // router.post('/', categoryCtrl.createCategory);
+   /**
+   * @swagger
+   * paths:
+   *  /category:
+   *    post:
+   *      tags: [Categories]
+   *      summary: "Add a new Category"
+   *      requestBody:
+   *        required: true
+   *        content:
+   *          application/json:
+   *            schema:
+   *              $ref: '#/components/schemas/Category'
+   *      responses:
+   *        "405":
+   *          description: "Invalid input"
+   *        "200" :
+   *          description: A Category Schemas
+   *          content:
+   *            application/json:
+   *              schema:
+   *                $ref: '#components/schemas/Category'
+   */
+   router.post('/', categoryCtrl.createCategory);
 
   module.exports = router;

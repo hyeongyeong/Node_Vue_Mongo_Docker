@@ -5,7 +5,6 @@
  *      Category:
  *          type: object
  *          required:
- *            - _id
  *            - name
  *            - child_category
  *            - depth
@@ -13,13 +12,11 @@
  *            - img_path
  *            - sequence
  *          properties:
- *            _id:
- *              type: ObjectId
  *            name:
  *              type: string
  *              description: 카테고리 혹은 시리즈 명
  *            child_category:
- *              type: ObjectId
+ *              type: string
  *              description: 하위 카테고리 id
  *            depth:
  *              type: integer
