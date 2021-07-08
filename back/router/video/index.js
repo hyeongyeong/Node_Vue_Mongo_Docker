@@ -32,19 +32,13 @@
   *    post:
   *      tags: [Videos]
   *      summary: "Add a new video"
-  *      operationId: "addVideo"
-  *      consumes:
-  *        - "application/json"
-  *      produces:
-  *        - "application/json"
-  *      parameters:
-  *        - in: "body"
-  *          name: "body"
-  *          description: "Video object that needs to be upload"
-  *          required: true
-  *          schema:
-  *            $ref: "#/components/schemas/Video"
-  *      response:
+  *      requestBody:
+  *        required: true
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#/components/schemas/Video'
+  *      responses:
   *        "405":
   *          description: "Invalid input"
   *        "200" :
