@@ -1,27 +1,27 @@
 version: '2.0'
 services:
-  # web:
-  #   build: './front'
-  #   ports:
-  #     - "3000:3000"
-  #   expose:
-  #     - "3000"
-  #   volumes:
-  #     - ./front:/app:cached
-  #     - /app/node_modules
-  #   stdin_open: true
-  #   environment: 
-  #     - CHOKIDAR_USEPOLLING=true
+  web:
+    build: './front'
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    # volumes:
+      # - ./front:/app:cached
+      # - /app/node_modules
+    stdin_open: true
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
 
   node:
     build: './back'
     #command: npm run dev:watch
     restart: always
     ports:
-      - "8080:8080"
+      - "5000:5000"
     volumes:
       - media-data:/data
-      - ./back:/app:cached
+      # - ./back:/app:cached
     networks:
       - babybeaver-network
     # environment:
