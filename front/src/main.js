@@ -14,6 +14,7 @@
 
  */
 import Vue from 'vue'
+import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 
@@ -27,6 +28,7 @@ import './registerServiceWorker'
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
+Vue.use(Vuex)
 
 // configure router
 const router = new VueRouter({

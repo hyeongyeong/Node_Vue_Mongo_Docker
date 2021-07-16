@@ -5,7 +5,7 @@ const SidebarStore = {
   showSidebar: false,
   sidebarLinks: [
     {
-      name: 'Dashboard',
+      name: 'BeaverBlock Admin',
       icon: 'ti-panel',
       path: '/admin/overview'
     }

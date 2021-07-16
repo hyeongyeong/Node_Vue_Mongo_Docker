@@ -6,25 +6,17 @@
         <i class="nc-icon nc-chart-pie-35"></i>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/admin/categories">
+        <i class="nc-icon nc-bullet-list-67"></i>
+        <p>Categories</p>
+      </sidebar-link>
       <sidebar-link to="/admin/user">
         <i class="nc-icon nc-circle-09"></i>
         <p>User Profile</p>
       </sidebar-link>
-      <sidebar-link to="/admin/table-list">
-        <i class="nc-icon nc-notes"></i>
-        <p>Table list</p>
-      </sidebar-link>
-      <sidebar-link to="/admin/typography">
-        <i class="nc-icon nc-paper-2"></i>
-        <p>Typography</p>
-      </sidebar-link>
       <sidebar-link to="/admin/icons">
         <i class="nc-icon nc-atom"></i>
         <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/admin/maps">
-        <i class="nc-icon nc-pin-3"></i>
-        <p>Maps</p>
       </sidebar-link>
       <sidebar-link to="/admin/notifications">
         <i class="nc-icon nc-bell-55"></i>
@@ -33,9 +25,9 @@
 
       <template slot="bottom-links">
         <sidebar-link class="active"
-                      to="/admin/upgrade">
+                      to="/admin/suggestion">
           <i class="nc-icon nc-alien-33"></i>
-          <p>Upgrade to PRO</p>
+          <p>suggestions</p>
         </sidebar-link>
       </template>
     </side-bar>

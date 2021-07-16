@@ -11,14 +11,8 @@
   </gmap-map>
 </template>
 <script>
-  import {API_KEY} from './Maps/API_KEY'
   import Vue from 'vue'
-  import * as VueGoogleMaps from 'vue2-google-maps'
-  Vue.use(VueGoogleMaps, {
-    load: {
-      key: API_KEY
-    }
-  })
+
   export default {
     data () {
       return {
