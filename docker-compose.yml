@@ -6,25 +6,21 @@ services:
       - "8080:8080"
     expose:
       - "8080"
-    # volumes:
-      # - ./front:/app:cached
-      # - /app/node_modules
+    volumes:
+      - ./front/src:/app/src:cached
     stdin_open: true
     environment: 
       - CHOKIDAR_USEPOLLING=true
 
   node:
     build: './back'
-    #command: npm run dev:watch
     restart: always
     ports:
       - "5000:5000"
     volumes:
       - media-data:/data
-      # - ./back:/app:cached
     networks:
       - babybeaver-network
-    # environment:
     depends_on:
       - mongodb
     
