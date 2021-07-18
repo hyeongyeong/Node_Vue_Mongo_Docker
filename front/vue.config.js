@@ -22,7 +22,7 @@ module.exports = {
     ]
   },
   pwa: {
-    name: 'Vue Beaver Block Admin',
+    name: 'Beaver Block Admin',
     themeColor: '#344675',
     msTileColor: '#344675',
     appleMobileWebAppCapable: 'yes',

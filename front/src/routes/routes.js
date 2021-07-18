@@ -8,7 +8,6 @@ import Category from 'src/pages/Category.vue'
 import Suggestion from 'src/pages/Suggestion.vue'
 import UserProfile from 'src/pages/UserProfile.vue'
 import Icons from 'src/pages/Icons.vue'
-import Maps from 'src/pages/Maps.vue'
 import Notifications from 'src/pages/Notifications.vue'
 
 const routes = [
@@ -41,11 +40,6 @@ const routes = [
         path: 'icons',
         name: 'Icons',
         component: Icons
-      },
-      {
-        path: 'maps',
-        name: 'Maps',
-        component: Maps
       },
       {
         path: 'notifications',
