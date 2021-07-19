@@ -1,6 +1,7 @@
 const path = require('path');
 const config = require('../../config/server.config');
 const multer = require('multer');
+const fs = require('fs');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -19,4 +20,24 @@ exports.uploadFile =  (req, res) => {
 
 exports.getFile = (req, res) => {
     res.send("get");
+};
+
+exports.deleteFile = (req, res) => {
+    const filePath = path.join('/data', req.param('path'));
+
+    fs.access(filePath, fs.constants.F_OK, (err) => {
+        if(err) {
+            console.log("can not delete file")
+            return res.status(404).send({message: `can not delete file : ${err}`});
+        }
+
+        fs. unlink(filePath, (err) => {
+            if(err) {
+                console.log("can not delete file");
+                return res.status(404).send({message: `can not delete file : ${err}`});
+            }
+            console.log(`Successfully delete ${filePath}.`);
+            res.send(`Successfully delete ${filePath}.`);
+        });
+    });
 };
