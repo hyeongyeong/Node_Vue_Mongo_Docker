@@ -7,6 +7,16 @@ function uploadFile(){
 
 }
 
+exports.uploadVideo =  (req, res) => {
+    var name = req.param('video');
+    console.log(name);
+    res.send(name);
+};
+
+exports.getVideo = (req, res) => {
+    console.log("up!");
+};
+
 exports.createVideo = (req, res) => {
     var newVideo = new Video({
         name: req.body.name,
