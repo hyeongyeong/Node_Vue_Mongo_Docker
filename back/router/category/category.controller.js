@@ -27,3 +27,12 @@ exports.getAllCategory = (req, res) => {
         return res.json(category);
     });
 };
+
+exports.deleteCategory = (req, res) => {
+    Category.findOneAndRemove({_id: req.param('id')}, (err, result)=> {
+        if (!err && result){
+            return res.json(result);
+        }
+        return res.status(404).send({message: 'No data found to delete'});
+    });
+};

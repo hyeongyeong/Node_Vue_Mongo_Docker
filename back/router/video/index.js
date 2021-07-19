@@ -10,7 +10,7 @@
 
 /*
 *
-*   GET POST (Update Delete) Video Row
+*   GET POST (Update) Delete Video Row
 *
 */
  

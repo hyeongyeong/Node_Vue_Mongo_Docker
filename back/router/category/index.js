@@ -54,4 +54,28 @@
    */
    router.post('/', categoryCtrl.createCategory);
 
+
+  /**
+  * @swagger
+  * paths:
+  *  /category/delete:
+  *    delete:
+  *      tags: [Categories]
+  *      summary: "Delete Category"
+  *      parameters:
+  *        - in: query
+  *          name: id
+  *          required: false
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: A Category Schemas
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Category'
+  */
+   router.delete('/delete',categoryCtrl.deleteCategory);
+
   module.exports = router;
