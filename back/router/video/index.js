@@ -105,16 +105,16 @@
   *      summary: "Get Uploaded File"
   *      parameters:
   *        - in: query
-  *          name: video
+  *          name: id
   *          required: false
   *          schema:
   *            type: string
-  *            description: 비디오 이름
+  *            description: video id
   *      responses:
   *        "405":
   *          description: "Invalid input"
   *        "200" :
-  *          description: 비디호 조회 성공
+  *          description: Successfully get uploaded file
   */
      router.get('/file', videoCtrl.uploadVideo);
 
@@ -125,18 +125,23 @@
      *    post:
      *      tags: [VideoFile]
      *      summary: "Upload new Video File"
-     *      consumes:
-     *        - multipart/form-data
-     *      parameters:
-     *        - in: formData
-     *          name: upfile
-     *          type: file
-     *          desription: The file to upload
+     *      requestBody:
+     *        required: true
+     *        content:
+     *          multipart/form-data:
+     *            schema:
+     *              type: object
+     *              properties:
+     *                filename:
+     *                  type: array
+     *                  items:
+     *                    type: string
+     *                    format: binary
      *      responses:
      *        "405":
      *          description: "Invalid input"
      *        "200":
-     *          description: 비디오 업로드 성공
+     *          description: Successfully upload file
      */
      router.post('/file', videoCtrl.getVideo);
 
