@@ -82,18 +82,26 @@
   */
   router.delete('/delete',videoCtrl.deleteVideo);
 
+
 /*
 *
 *   GET POST (Update Delete) Video File
 *
 */
 
-    /**
+/**
+ * @swagger
+ * tags:
+ *   name: VideoFile
+ *   description: Related to video file upload
+ */
+
+  /**
   * @swagger
   * paths:
   *  /video/file:
   *    get:
-  *      tags: [Videos]
+  *      tags: [VideoFile]
   *      summary: "Get Uploaded File"
   *      parameters:
   *        - in: query
@@ -115,7 +123,7 @@
      * paths:
      *  /video/file:
      *    post:
-     *      tags: [Videos]
+     *      tags: [VideoFile]
      *      summary: "Upload new Video File"
      *      consumes:
      *        - multipart/form-data
