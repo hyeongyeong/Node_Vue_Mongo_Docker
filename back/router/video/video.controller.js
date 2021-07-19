@@ -3,9 +3,7 @@ const Video = require('../../model/Video');
 const config = require('../../config/server.config');
 const multer = require('multer');
 
-function uploadFile(){
 
-}
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, '/data') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
@@ -18,6 +16,7 @@ var storage = multer.diskStorage({
 exports.upload = multer({ storage: storage });
 
 exports.uploadVideo =  (req, res) => {
+    
     res.send("upload");
 };
 
@@ -31,7 +30,7 @@ exports.createVideo = (req, res) => {
         sequence: req.body.sequence,
         img_path: req.body.img_path,
         file_path: req.body.file_path,
-        //category: req.body.category,
+        category: req.body.category,
     });
     newVideo.save(function (err) {
         if (err) return res.json(err);
