@@ -116,7 +116,7 @@
   *        "200" :
   *          description: Successfully get uploaded file
   */
-     router.get('/file', videoCtrl.uploadVideo);
+     router.get('/file', videoCtrl.getVideo);
 
      /**
      * @swagger
@@ -143,7 +143,7 @@
      *        "200":
      *          description: Successfully upload file
      */
-     router.post('/file', videoCtrl.getVideo);
+     router.post('/file', videoCtrl.upload.single('file'), videoCtrl.uploadVideo);
 
 
 

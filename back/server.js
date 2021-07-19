@@ -46,7 +46,7 @@ db.once('open', function() {
 autoIncrement.initialize(db);
 
 app.use('/', require('./router'));
-app.use('/files', express.static(__dirname + '/data'));
+app.use('/files', express.static('../data/media'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs, {explorer: true}));
 
 app.listen(config.serverPort, config.serverHost);

@@ -18,7 +18,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - media-data:/data
+      - ./data/media:/data
       - ./back:/app
     networks:
       - babybeaver-network

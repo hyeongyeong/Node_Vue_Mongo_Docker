@@ -6,15 +6,23 @@ const multer = require('multer');
 function uploadFile(){
 
 }
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '/data') // cb 콜백함수를 통해 전송된 파일 저장 디렉토리 설정
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname) // cb 콜백함수를 통해 전송된 파일 이름 설정
+    }
+});
+
+exports.upload = multer({ storage: storage });
 
 exports.uploadVideo =  (req, res) => {
-    var name = req.param('video');
-    console.log(name);
-    res.send(name);
+    res.send("upload");
 };
 
 exports.getVideo = (req, res) => {
-    console.log("up!");
+    res.send("get");
 };
 
 exports.createVideo = (req, res) => {
