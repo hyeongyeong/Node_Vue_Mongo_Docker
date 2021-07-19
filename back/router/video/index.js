@@ -116,35 +116,59 @@
   *        "200" :
   *          description: Successfully get uploaded file
   */
-     router.get('/file', videoCtrl.getVideo);
+  router.get('/file', videoCtrl.getVideo);
 
-     /**
-     * @swagger
-     * paths:
-     *  /video/file:
-     *    post:
-     *      tags: [VideoFile]
-     *      summary: "Upload new Video File"
-     *      requestBody:
-     *        required: true
-     *        content:
-     *          multipart/form-data:
-     *            schema:
-     *              type: object
-     *              properties:
-     *                filename:
-     *                  type: array
-     *                  items:
-     *                    type: string
-     *                    format: binary
-     *      responses:
-     *        "405":
-     *          description: "Invalid input"
-     *        "200":
-     *          description: Successfully upload file
-     */
+  /**
+ * @swagger
+ * paths:
+ *  /video/files:
+ *    post:
+ *      tags: [VideoFile]
+ *      summary: "Upload new Video File"
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          multipart/form-data:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                file:
+ *                  type: array
+ *                  items:
+ *                    type: string
+ *                    format: binary 
+ *      responses:
+ *        "405":
+ *          description: "Invalid input"
+ *        "200":
+ *          description: Successfully upload file
+ */
+  router.post('/files', videoCtrl.upload.array('file',10), videoCtrl.uploadVideo);
+
+    /**
+ * @swagger
+ * paths:
+ *  /video/file:
+ *    post:
+ *      tags: [VideoFile]
+ *      summary: "Upload new Video File"
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          multipart/form-data:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                file:
+ *                  type: string
+ *                  format: binary
+ *      responses:
+ *        "405":
+ *          description: "Invalid input"
+ *        "200":
+ *          description: Successfully upload file
+ */
      router.post('/file', videoCtrl.upload.single('file'), videoCtrl.uploadVideo);
-
 
 
   module.exports = router;
