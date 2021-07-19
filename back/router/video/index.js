@@ -58,6 +58,30 @@
   */
   router.post('/', videoCtrl.createVideo);
 
+
+  /**
+  * @swagger
+  * paths:
+  *  /video/delete:
+  *    delete:
+  *      tags: [Videos]
+  *      summary: "Delete video"
+  *      parameters:
+  *        - in: query
+  *          name: id
+  *          required: false
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: A Video Schemas
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Video'
+  */
+  router.delete('/delete',videoCtrl.deleteVideo);
+
 /*
 *
 *   GET POST (Update Delete) Video File

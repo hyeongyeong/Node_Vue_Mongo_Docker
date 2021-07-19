@@ -37,3 +37,12 @@ exports.getAllVideo = (req, res) => {
         return res.json(video);
     });
 };
+
+exports.deleteVideo = (req, res) => {
+    Video.findOneAndRemove({_id: req.param('id')}, (err, result)=> {
+        if (!err && result){
+            return res.json(result);
+        }
+        return res.status(404).send({message: 'No data found to delete'});
+    });
+};
