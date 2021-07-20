@@ -18,6 +18,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import App from './App.vue'
 
+
 // LightBootstrap plugin
 import LightBootstrap from './light-bootstrap-main'
 
@@ -25,10 +26,14 @@ import LightBootstrap from './light-bootstrap-main'
 import routes from './routes/routes'
 
 import './registerServiceWorker'
+
+var VueDragula = require('vue-dragula')
+
 // plugin setup
 Vue.use(VueRouter)
 Vue.use(LightBootstrap)
 Vue.use(Vuex)
+Vue.use(VueDragula)
 
 // configure router
 const router = new VueRouter({
@@ -46,6 +51,16 @@ const router = new VueRouter({
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  created: function () {
+    Vue.vueDragula.options('my-bag', {
+      direction: 'horizontal'
+    })
+  },
+  ready: function () {
+    Vue.vueDragula.eventBus.$on('drop', function (args) {
+      console.log('drop: ' + args[0])
+    })
+  },
   render: h => h(App),
   router
 })

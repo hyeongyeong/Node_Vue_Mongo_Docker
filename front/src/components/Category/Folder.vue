@@ -1,31 +1,48 @@
 <template>
-    <div class="folder">
+    <div class="folder" v-on:dblclick="folderOnClick">
         <div class="folder-icon">
-            <img class="folder-img" src="../../../../data/동요/루하동요.png">
+            <img class="folder-img" :src="path">
         </div>
         <div class="floder-title">
-            {{title}} title
+            {{title}}
         </div>
     </div>
 </template>
 
 <script>
-
+  import EventBus from '../../EventBus'
   export default {
     name: 'folder',
     components: {
+    },
+    methods: {
+        folderOnClick(){
+            var newComponent = [{
+                    id: 1,
+                    title: "new!!" + this.title,
+                    file_path: this.path
+            }];
+            EventBus.$emit('enter-folder', newComponent);
+        },
+    },
+    mounted(){
     },
     props: {
         title: {
             type: String,
             description: "Folder title"
         },
+        path: {
+            type: String,
+            description: "Folder image path"
+        }
     },
   }
 
 </script>
 
 <style>
+
 .folder-img {
   width: 100;
   height: 100px;
@@ -55,17 +72,21 @@
 }
 
 .folder {
-    width: 150px;
-    height: 150px;
-    margin: 50px;
+    width: fit-content;
+    block-size: fit-content;
     text-align: center;
+    display: inline-block;
+    margin: 20px;
 }
 
 .folder-icon:active {
     background-color: #6495ED
 }
+
 .folder:hover {
     background-color: #DCDCDC
 }
+
+
 
 </style>
