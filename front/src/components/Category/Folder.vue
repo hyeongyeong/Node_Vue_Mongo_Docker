@@ -1,9 +1,9 @@
 <template>
-    <div class="folder" v-on:dblclick="folderOnClick">
+    <div class="folder" v-on:dblclick="folderOnClick" >
         <div class="folder-icon">
             <img class="folder-img" :src="path">
         </div>
-        <div class="floder-title">
+        <div class="folder-title">
             {{title}}
         </div>
     </div>
@@ -48,17 +48,15 @@
   height: 100px;
   object-fit: cover;
   vertical-align: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -ms-user-select: none;
 }
 
-.floder-title { 
+.folder-title { 
     font-size: 20px;
 }
 
 .folder-icon {
+    align-items: center;
+    justify-content: center;
     width: 150px;
     height: 150px;
     background: pink;
@@ -72,11 +70,15 @@
 }
 
 .folder {
-    width: fit-content;
+    width: 150px;
     block-size: fit-content;
     text-align: center;
     display: inline-block;
     margin: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
 }
 
 .folder-icon:active {

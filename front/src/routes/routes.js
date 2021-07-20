@@ -3,23 +3,21 @@ import DashboardLayout from '../layout/DashboardLayout.vue'
 import NotFound from '../pages/NotFoundPage.vue'
 
 // Admin pages
-import Overview from 'src/pages/Overview.vue'
 import Category from 'src/pages/Category.vue'
 import Suggestion from 'src/pages/Suggestion.vue'
 import UserProfile from 'src/pages/UserProfile.vue'
-import Icons from 'src/pages/Icons.vue'
 import Notifications from 'src/pages/Notifications.vue'
 
 const routes = [
   {
     path: '/',
     component: DashboardLayout,
-    redirect: '/admin/overview'
+    redirect: '/admin/categories'
   },
   {
     path: '/admin',
     component: DashboardLayout,
-    redirect: '/admin/overview',
+    redirect: '/admin/categories',
     children: [
       {
         path: 'categories',
@@ -27,19 +25,9 @@ const routes = [
         component: Category
       },
       {
-        path: 'overview',
-        name: 'Overview',
-        component: Overview
-      },
-      {
         path: 'user',
         name: 'User',
         component: UserProfile
-      },
-      {
-        path: 'icons',
-        name: 'Icons',
-        component: Icons
       },
       {
         path: 'notifications',
