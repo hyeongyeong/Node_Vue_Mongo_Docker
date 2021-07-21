@@ -6,6 +6,7 @@
  *          type: object
  *          required:
  *            - name
+ *            - parent_category
  *            - child_category
  *            - depth
  *            - update_date
@@ -15,6 +16,9 @@
  *            name:
  *              type: string
  *              description: 카테고리 혹은 시리즈 명
+ *            parent_category:
+ *              type: string
+ *              description: 상위 카테고리 id
  *            child_category:
  *              type: string
  *              description: 하위 카테고리 id
@@ -44,6 +48,7 @@
  
  const CategorySchema = new Schema({
      name: {type: String},
+     parent_category: {type: Number, ref:'Category'},
      child_category: [{type: Number, ref:'Category'}],
      depth: {type: Number},
      sequence: {type: Number},
