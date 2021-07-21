@@ -12,10 +12,13 @@
         </div>
     </div>
 </template>
+
 <script>
-  import Draggable from 'vuedraggable'
+  import axios from 'axios';
+  import Draggable from 'vuedraggable';
   import EventBus from '../EventBus';
   import Folder from '../components/Category/Folder'
+  const config = require('../server.config');
   export default {
     name: 'beaverExploerer',
     components: {
@@ -23,6 +26,20 @@
         Draggable
     },
     methods: {
+        fetchCategory(){
+            var vm = this
+            axios.get(config.serverUrl() + 'category')
+                .then((result) => {
+                    console.log("Categories : ", result);
+                })
+        },
+        fetchVideo(){
+            var vm = this
+            axios.get(config.serverUrl() + 'video')
+                .then((result) => {
+                    console.log("Videos : " , result);
+                })
+        },
         handleChange() {
             var parent = document.getElementById("category");
             var child = parent.childNodes;
@@ -47,6 +64,8 @@
         },
     },
     created(){
+        this.fetchCategory();
+        this.fetchVideo();
         EventBus.$on('enter-folder', (payload)=> {
             this.folders = payload;
         });
