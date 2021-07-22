@@ -5,7 +5,7 @@
                 <div class="modal-container">
                     <div class="modal-header">
                         <slot name="header"> <h3> 카테고리 생성 </h3> </slot>
-                        <img class="create-folder" src="../../assets/icon/plus_folder.png" alt="Create Category">
+                        <img class="modal-main-img" src="../../assets/icon/plus_folder.png" alt="Create Category">
                     </div>
 
                     <div class="modal-body">
@@ -75,6 +75,10 @@ export default{
 
 </script>
 <style scoped>
+  .modal-main-img{
+    width: 40px;
+    height: 40px;
+  }
   .modal-img { 
     width: 25px;
     height: 25px;
