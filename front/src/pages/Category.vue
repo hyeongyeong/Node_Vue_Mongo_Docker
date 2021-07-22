@@ -2,12 +2,28 @@
   <div class="content">
         <div class="container-fluid">
             <card>
-                <card>directory link</card>
-                <draggable class="moving-card" id="category" :animation=200 :component-data="getComponentData()">
-                    <span v-for="folder in folders" :key="folder.id" :id="folder.id">
-                        <folder :title="folder.title" :path="folder.file_path" />
-                    </span>
-                </draggable>
+                <card>
+                    <div class="folder-header">
+                        <!-- <span> -->
+                        <div class="cascading-links">
+                            directory link
+                        </div>
+
+                        <div class="create-btn">
+                            <img class="create-folder" src="../assets/icon/plus_folder.png" alt="Create Category" @click.prevent="createCategory">
+                            <img class="create-folder" src="../assets/icon/plus_video.png" alt="Create Video" @click.prevent="createVideo">
+                            <img class="create-folder" src="../assets/icon/trash.png" alt="Delete" @click.prevent="selectToErase">
+                        </div>
+                        <!-- </span> -->
+                    </div>
+                </card>
+                <div>
+                    <draggable class="moving-card" id="category" :animation=200 :component-data="getComponentData()">
+                        <span v-for="folder in folders" :key="folder.id" :id="folder.id">
+                            <folder :title="folder.title" :path="folder.file_path" />
+                        </span>
+                    </draggable>
+                </div>
             </card>
         </div>
     </div>
@@ -26,6 +42,15 @@
         Draggable
     },
     methods: {
+        selectToErase() {
+            alert('select to erase');
+        },
+        createVideo(){
+            alert('create video');
+        },
+        createCategory () {
+            alert('create category');
+        },
         fetchCategory(){
             var vm = this
             axios.get(config.serverUrl() + 'category')
@@ -96,6 +121,36 @@
 </script>
 
 <style lang="scss">
+img {
+    margin: 10px;
+}
+
+.folder-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.cascading-link{
+    
+}
+
+.create-folder {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+}
+
+.create-folder:hover {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
 
 .moving-card {
     @apply opacity-50 bg-gray-100 border border-blue-500;
