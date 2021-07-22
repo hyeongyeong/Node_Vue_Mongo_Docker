@@ -18,7 +18,7 @@
                                       v-model="new_video.name">
                             </base-input>
 
-                            <p>비디오 썸네일 파일 업로드 : </p>
+                            <p>비디오 썸네일 파일 업로드 <img src="../../assets/icon/plus_img.png" alt="Create Category"> : </p>
                             <div class="filebox">
                               <div id="preview_file">
                                 <img v-if="preview_url" :src="preview_url"/>
@@ -26,7 +26,7 @@
                               <label id="img_file_upload" for="thumbnail_upload">업로드</label> 
                               <input type="file" id="thumbnail_upload" @change="onFileChange"> 
                             </div>
-                            <p>비디오 파일 업로드 : </p>
+                            <p>비디오 파일 업로드 <img src="../../assets/icon/plus_video.png" alt="Create Category"> : </p>
                             <div class="filebox">
                               <p id="video_name" />
                               <label id="video_file_upload" for="upload_file">업로드</label> 

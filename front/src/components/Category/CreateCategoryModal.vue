@@ -18,7 +18,7 @@
                                       v-model="new_category.name">
                             </base-input>
 
-                            <p>카테고리 이미지 파일 업로드 : </p>
+                            <p>카테고리 이미지 파일 업로드 <img src="../../assets/icon/plus_img.png" alt="Create Category"> : </p>
                             <div class="filebox">
                               <div id="preview_file">
                                 <img v-if="preview_url" :src="preview_url"/>
