@@ -53,9 +53,11 @@
         },
         createVideo(){
             this.showCreateVideoModal = !this.showCreateVideoModal;
+            // add data to this.folder
         },
         createCategory () {
             this.showCreateCategoryModal = !this.showCreateCategoryModal;
+            // add data to this.folder
         },
         fetchCategory(){
             var vm = this
