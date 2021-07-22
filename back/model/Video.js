@@ -8,6 +8,7 @@
  *            - name
  *            - sequence
  *            - file_path
+ *            - img_path
  *            - category
  *            - date
  *          properties:

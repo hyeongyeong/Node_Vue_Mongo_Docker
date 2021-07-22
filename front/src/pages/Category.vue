@@ -27,7 +27,7 @@
             </card>
         </div>
         <CategoryModal v-if="showCreateCategoryModal" @close="showCreateCategoryModal = false"/>
-            
+        <VideoModal v-if="showCreateVideoModal" @close="showCreateVideoModal = false"/>
     </div>
 </template>
 
@@ -37,6 +37,7 @@
   import EventBus from '../EventBus';
   import Folder from '../components/Category/Folder'
   import CategoryModal from '../components/Category/CreateCategoryModal.vue'
+  import VideoModal from '../components/Category/CreateVideoModal.vue'
   const config = require('../server.config');
   export default {
     name: 'beaverExploerer',
@@ -44,13 +45,14 @@
         Folder,
         Draggable,
         CategoryModal,
+        VideoModal,
     },
     methods: {
         selectToErase() {
             alert('select to erase');
         },
         createVideo(){
-            alert('create video');
+            this.showCreateVideoModal = !this.showCreateVideoModal;
         },
         createCategory () {
             this.showCreateCategoryModal = !this.showCreateCategoryModal;
@@ -116,6 +118,7 @@
                 },
             ],
             showCreateCategoryModal: false,
+            showCreateVideoModal: false,
         }
     },
     props: {
