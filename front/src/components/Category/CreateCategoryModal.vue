@@ -18,7 +18,7 @@
                                       v-model="new_category.name">
                             </base-input>
 
-                            <p>카테고리 이미지 파일 업로드 <img src="../../assets/icon/plus_img.png" alt="Create Category"> : </p>
+                            <p>카테고리 이미지 파일 업로드 <img class="modal-img" src="../../assets/icon/plus_img.png" alt="Create Category"> : </p>
                             <div class="filebox">
                               <div id="preview_file">
                                 <img v-if="preview_url" :src="preview_url"/>
@@ -75,6 +75,10 @@ export default{
 
 </script>
 <style scoped>
+  .modal-img { 
+    width: 25px;
+    height: 25px;
+  }
   .grid-format > * {
       padding: 10px 0;
   }
