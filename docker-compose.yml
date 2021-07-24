@@ -16,6 +16,11 @@ services:
   node:
     build: './back'
     restart: always
+    env_file: .env
+    environment: 
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
     ports:
       - "5000:5000"
     volumes:
@@ -29,14 +34,16 @@ services:
   mongodb:
     image: mongo:4.4.1-bionic
     restart: always
-    environment: 
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: babybeaver
-      MONGO_INITDB_DATABASE: babybeaver
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: $MONGO_INITDB_ROOT_USERNAME
+      MONGO_INITDB_ROOT_PASSWORD: $MONGO_INITDB_ROOT_PASSWORD
+      DB_NAME: $DB_NAME
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
     volumes:
       - mongo-data:/data/db
+      - ./mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh
     container_name: "mongodb"
-    entrypoint: [ "/usr/bin/mongod", "--bind_ip_all"]   
     ports:
       - "27017:27017"
     networks:

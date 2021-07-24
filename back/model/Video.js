@@ -25,7 +25,7 @@
  *              type: string
  *              description: 비디오 파일 경로
  *            category:
- *              type: string
+ *              type: integer
  *              description: 비디오가 속한 최하위 카테고리 id
  *            date:
  *              type: string
