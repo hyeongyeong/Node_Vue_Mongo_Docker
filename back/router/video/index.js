@@ -43,9 +43,18 @@
   *      requestBody:
   *        required: true
   *        content:
-  *          application/json:
-  *            schema:
-  *              $ref: '#/components/schemas/Video'
+  *          multipart/form-data:
+   *            schema:
+   *              type: object
+   *              properties:
+   *                file:
+   *                  type: array
+   *                  items:
+   *                    type: string
+   *                    format: binary 
+   *                video:
+   *                  type: object
+   *                  $ref: '#components/schemas/Video'
   *      responses:
   *        "405":
   *          description: "Invalid input"
@@ -56,7 +65,7 @@
   *              schema:
   *                $ref: '#components/schemas/Video'
   */
-  router.post('/', videoCtrl.createVideo);
+  router.post('/', videoCtrl.uploadVideoFile.array('file', 2), videoCtrl.createVideo);
 
 
   /**

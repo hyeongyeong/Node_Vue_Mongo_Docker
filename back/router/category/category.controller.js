@@ -7,10 +7,10 @@ const fs = require('fs')
 // 파일 path 수정 + folder path 없으면 생성하게
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, `/data/Category`)
+        cb(null, `/data`)
     },
     filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_${file.originalname}`);
+        cb(null, `${Date.now()}_category_${file.originalname}`);
     }
 });
 
@@ -23,9 +23,7 @@ exports.createCategory = (req, res) => {
 
     var newCategory = new Category({
         name: category.name,
-        file_path: category.file_path,
-        depth: category.depth, 
-        img_path: category.img_path,
+        depth: category.depth,
         sequence: category.sequence,
     });
     newCategory.save(function (mongo_err) {
@@ -34,8 +32,8 @@ exports.createCategory = (req, res) => {
         // 파일이 서버에 올라와있는지 확인
         fs.access(path, fs.F_OK, (file_access_err) => {
             if (file_access_err) {
-              console.error(`파일이 서버에 업로드되지 않음 ${file_access_err}`)
-              return
+              console.error(`파일이 서버에 업로드되지 않음 ${file_access_err}`);
+              return;
             }
             // 새로운 파일 패스를 정하고 그 directory가 존재하는지 확인, 없으면 새로 만들기
             var newFileDirectory = `/data/${newCategory._id}`;
@@ -43,7 +41,7 @@ exports.createCategory = (req, res) => {
                 fs.mkdirSync(newFileDirectory);
             }
             // 파일을 새로운 파일 패스로 rename, mongo database에 update
-            var newFilePath = newFileDirectory + `/${newCategory.name}.${ext}`
+            var newFilePath = newFileDirectory + `/${newCategory.name}.${ext}`;
             fs.rename(path, newFilePath, () => {
                 Category.findOneAndUpdate({_id: newCategory._id}, {$set: {'img_path': newFilePath}}, (update_err, update_result) => {
                     if (!update_err) {
