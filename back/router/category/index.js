@@ -58,9 +58,19 @@
    *      requestBody:
    *        required: true
    *        content:
-   *          application/json:
+   *          multipart/form-data:
    *            schema:
-   *              $ref: '#/components/schemas/Category'
+   *              type: object
+   *              properties:
+   *                file:
+   *                  type: string
+   *                  format: binary 
+   *                category:
+   *                  type: object
+   *                  $ref: '#components/schemas/Category'
+   *          encoding:
+   *            category:
+   *              contentType: application/json
    *      responses:
    *        "405":
    *          description: "Invalid input"
@@ -71,7 +81,7 @@
    *              schema:
    *                $ref: '#components/schemas/Category'
    */
-   router.post('/', categoryCtrl.createCategory);
+   router.post('/', categoryCtrl.uploadCategoryFile.single('file'), categoryCtrl.createCategory);
 
 
   /**

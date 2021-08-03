@@ -2,22 +2,61 @@ const path = require('path');
 const Category = require('../../model/Category');
 const config = require('../../config/server.config');
 const multer = require('multer');
+const fs = require('fs')
 
-function uploadFile(){
+// 파일 path 수정 + folder path 없으면 생성하게
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, `/data/Category`)
+    },
+    filename: function (req, file, cb) {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    }
+});
 
-}
+exports.uploadCategoryFile = multer({ storage: storage});
 
 exports.createCategory = (req, res) => {
+    const category = JSON.parse(req.body.category);
+    const path = req.file.path;
+    const ext = path.split('.')[1];
+
     var newCategory = new Category({
-        name: req.body.name,
-        file_path: req.body.file_path,
-        depth: 0, // TODO: need to edit
-        img_path: req.body.img_path,
-        sequence: req.body.sequence,
+        name: category.name,
+        file_path: category.file_path,
+        depth: category.depth, 
+        img_path: category.img_path,
+        sequence: category.sequence,
     });
-    newCategory.save(function (err) {
-        if (err) return res.json(err);
-        return res.json(newCategory);
+    newCategory.save(function (mongo_err) {
+        // db에 new category data 저장됐는지 확인
+        if (mongo_err) return res.json(`데이터베이스에 데이터가 생성되지 않음 ${mongo_err}`);
+        // 파일이 서버에 올라와있는지 확인
+        fs.access(path, fs.F_OK, (file_access_err) => {
+            if (file_access_err) {
+              console.error(`파일이 서버에 업로드되지 않음 ${file_access_err}`)
+              return
+            }
+            // 새로운 파일 패스를 정하고 그 directory가 존재하는지 확인, 없으면 새로 만들기
+            var newFileDirectory = `/data/${newCategory._id}`;
+            if(!fs.existsSync(newFileDirectory)){
+                fs.mkdirSync(newFileDirectory);
+            }
+            // 파일을 새로운 파일 패스로 rename, mongo database에 update
+            var newFilePath = newFileDirectory + `/${newCategory.name}.${ext}`
+            fs.rename(path, newFilePath, () => {
+                Category.findOneAndUpdate({_id: newCategory._id}, {$set: {'img_path': newFilePath}}, (update_err, update_result) => {
+                    if (!update_err) {
+                        newCategory.img_path = newFilePath;
+                        return res.json(newCategory);
+                    } 
+                    else {
+                        console.error(`새로운 이미지 패스가 update되지 않음 ${update_err}`);
+                    }
+                });
+            })
+
+        });    
     });
 };
 
