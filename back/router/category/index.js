@@ -29,6 +29,25 @@
   */
    router.get('/', categoryCtrl.getAllCategory);
 
+  /**
+  * @swagger
+  * paths:
+  *  /category/root:
+  *    get:
+  *      tags: [Categories]
+  *      summary: "Get top category"
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: A Category Schemas
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Category'
+  */
+   router.get('/root', categoryCtrl.getTopCategory);
+
    /**
    * @swagger
    * paths:

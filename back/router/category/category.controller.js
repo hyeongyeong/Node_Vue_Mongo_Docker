@@ -28,6 +28,13 @@ exports.getAllCategory = (req, res) => {
     });
 };
 
+exports.getTopCategory = (req, res) => {
+    Category.find({depth: 0}, (err, category) => {
+        if (err) return res.status(500).send(err); // 500 error
+        return res.json(category);
+    });
+};
+
 exports.deleteCategory = (req, res) => {
     Category.findOneAndRemove({_id: req.param('id')}, (err, result)=> {
         if (!err && result){
