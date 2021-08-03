@@ -10,7 +10,7 @@
  *            - file_path
  *            - img_path
  *            - category
- *            - date
+ *            - update_date
  *          properties:
  *            name:
  *              type: string
@@ -27,7 +27,7 @@
  *            category:
  *              type: integer
  *              description: 비디오가 속한 최하위 카테고리 id
- *            date:
+ *            update_date:
  *              type: string
  *              description: 비디오가 업로드된 날짜
  * 
@@ -47,7 +47,7 @@ const VideoSchema = new Schema({
     file_path: {type: String},
     img_path: {type: String},
     category: {type: Number, ref: 'Category'},
-    date: {type: Date, default: Date.now}
+    update_date: {type: Date, default: Date.now}
   });
   
   VideoSchema.plugin(autoIncrement.plugin, 'Video');
