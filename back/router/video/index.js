@@ -44,17 +44,17 @@
   *        required: true
   *        content:
   *          multipart/form-data:
-   *            schema:
-   *              type: object
-   *              properties:
-   *                file:
-   *                  type: array
-   *                  items:
-   *                    type: string
-   *                    format: binary 
-   *                video:
-   *                  type: object
-   *                  $ref: '#components/schemas/Video'
+  *            schema:
+  *              type: object
+  *              properties:
+  *                file:
+  *                  type: array
+  *                  items:
+  *                    type: string
+  *                    format: binary 
+  *                video:
+  *                  type: object
+  *                  $ref: '#components/schemas/Video'
   *      responses:
   *        "405":
   *          description: "Invalid input"
@@ -67,18 +67,54 @@
   */
   router.post('/', videoCtrl.uploadVideoFile.array('file', 2), videoCtrl.createVideo);
 
+ /**
+  * @swagger
+  * paths:
+  *  /video/update/{id}:
+  *    put:
+  *      tags: [Videos]
+  *      summary: "Update already exist video row data"
+  *      parameters:
+  *        - in: path
+  *          name: id
+  *          required: true
+  *          schema:
+  *            type: integer
+  *            format: int64
+  *      requestBody:
+  *        required: true
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#components/schemas/Video'
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: Upadated Video Schema
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Video'
+  */
+  router.put('/update/:id', videoCtrl.updateVideo);
+
+
 
   /**
   * @swagger
   * paths:
-  *  /video/delete:
+  *  /video/delete/{id}:
   *    delete:
   *      tags: [Videos]
   *      summary: "Delete video"
   *      parameters:
-  *        - in: query
+  *        - in: path
   *          name: id
-  *          required: false
+  *          required: true
+  *          schema:
+  *            type: integer
+  *            format: int64
   *      responses:
   *        "405":
   *          description: "Invalid input"
@@ -89,6 +125,6 @@
   *              schema:
   *                $ref: '#components/schemas/Video'
   */
-  router.delete('/delete',videoCtrl.deleteVideo);
+  router.delete('/delete/:id',videoCtrl.deleteVideo);
 
   module.exports = router;
