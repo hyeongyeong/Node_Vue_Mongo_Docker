@@ -29,6 +29,38 @@
   */
    router.get('/', categoryCtrl.getAllCategory);
 
+ /**
+  * @swagger
+  * paths:
+  *  /category/update/{id}:
+  *    put:
+  *      tags: [Categories]
+  *      summary: "Update already exist category row data"
+  *      parameters:
+  *        - in: path
+  *          name: id
+  *          required: true
+  *          schema:
+  *            type: integer
+  *            format: int64
+  *      requestBody:
+  *        required: true
+  *        content:
+  *          application/json:
+  *            schema:
+  *              $ref: '#components/schemas/Category'
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: Upadated Category Schema
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Category'
+  */
+  router.put('/update/:id', categoryCtrl.updateCategory);
+
   /**
   * @swagger
   * paths:

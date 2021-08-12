@@ -10,7 +10,7 @@ var storage = multer.diskStorage({
         cb(null, `/data`)
     },
     filename: function (req, file, cb) {
-        cb(null, `${Date.now()}_category_${file.originalname}`);
+        cb(null, `category_${Date.now()}_category_${file.originalname}`);
     }
 });
 
@@ -35,27 +35,22 @@ exports.createCategory = (req, res) => {
               console.error(`파일이 서버에 업로드되지 않음 ${file_access_err}`);
               return;
             }
-            // 새로운 파일 패스를 정하고 그 directory가 존재하는지 확인, 없으면 새로 만들기
-            var newFileDirectory = `/data/${newCategory._id}`;
-            if(!fs.existsSync(newFileDirectory)){
-                fs.mkdirSync(newFileDirectory);
-            }
-            // 파일을 새로운 파일 패스로 rename, mongo database에 update
-            var newFilePath = newFileDirectory + `/${newCategory.name}.${ext}`;
-            fs.rename(path, newFilePath, () => {
-                Category.findOneAndUpdate({_id: newCategory._id}, {$set: {'img_path': newFilePath}}, (update_err, update_result) => {
-                    if (!update_err) {
-                        newCategory.img_path = newFilePath;
-                        return res.json(newCategory);
-                    } 
-                    else {
-                        console.error(`새로운 이미지 패스가 update되지 않음 ${update_err}`);
-                    }
-                });
-            })
-
-        });    
+        });
+        return res.json(newCategory);  
     });
+};
+
+exports.updateCategory = (req, res) => {
+    
+    Category.findOneAndUpdate(
+        {_id: req.params.id}, {$set: req.body}, (update_err, result) => {
+            if (!update_err) {
+                Category.findOne({_id: req.params.id}, (find_err, video) => {
+                    if(!find_err) {return res.json(video);}
+                    else {return res.json({message: `해당하는 데이터가 없습니다.`})};
+                });
+            } else {return res.json({result: `id: ${req.params.id}에 해당 body를 업데이트하지 못했습니다.`})};
+    }); 
 };
 
 exports.getAllCategory = (req, res) => {

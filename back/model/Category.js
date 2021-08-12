@@ -17,10 +17,10 @@
  *              type: string
  *              description: 카테고리 혹은 시리즈 명
  *            parent_category:
- *              type: string
+ *              type: integer
  *              description: 상위 카테고리 id
  *            child_category:
- *              type: string
+ *              type: integer
  *              description: 하위 카테고리 id
  *            depth:
  *              type: integer
