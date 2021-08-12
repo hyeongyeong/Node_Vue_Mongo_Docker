@@ -50,7 +50,6 @@ exports.createVideo = (req, res) => {
         img_path: file_path_data.img_path,
         file_path: file_path_data.video_path
     });
-
     newVideo.save(function (mongo_err) {
         if (mongo_err) return res.json(mongo_err);
         return res.json(newVideo);
@@ -64,8 +63,14 @@ exports.getAllVideo = (req, res) => {
     });
 };
 
+exports.getVideoRelatedCategory = (req, res) => {
+    Video.find({category: req.params.category}, (err, video) => {
+        if (err) return res.status(500).send(err); // 500 error
+        return res.json(video);
+    })
+}
+
 exports.updateVideo = (req, res) => {
-    
     Video.findOneAndUpdate(
         {_id: req.params.id}, {$set: req.body}, (update_err, result) => {
             if (!update_err) {
@@ -74,9 +79,7 @@ exports.updateVideo = (req, res) => {
                     else {return res.json({message: `해당하는 데이터가 없습니다.`})};
                 });
             } else {return res.json({result: `id: ${req.params.id}에 해당 body를 업데이트하지 못했습니다.`})};
-    });
-    
-    
+    }); 
 };
 
 exports.deleteVideo = (req, res) => {

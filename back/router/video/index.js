@@ -33,6 +33,32 @@
   */
   router.get('/', videoCtrl.getAllVideo);
 
+   /**
+  * @swagger
+  * paths:
+  *  /video/selectedCategory/{category}:
+  *    get:
+  *      tags: [Videos]
+  *      summary: "Update already exist video row data"
+  *      parameters:
+  *        - in: path
+  *          name: id
+  *          required: true
+  *          schema:
+  *            type: integer
+  *            format: int64
+  *      responses:
+  *        "405":
+  *          description: "Invalid input"
+  *        "200" :
+  *          description: Upadated Video Schema
+  *          content:
+  *            application/json:
+  *              schema:
+  *                $ref: '#components/schemas/Video'
+  */
+    router.get('/selectedCategory/:category', videoCtrl.getVideoRelatedCategory);
+
   /**
   * @swagger
   * paths:
