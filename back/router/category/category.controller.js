@@ -19,11 +19,11 @@ exports.uploadCategoryFile = multer({ storage: storage});
 exports.createCategory = (req, res) => {
     const category = JSON.parse(req.body.category);
     const path = req.file.path;
-    const ext = path.split('.')[1];
 
     var newCategory = new Category({
         name: category.name,
         depth: category.depth,
+        img_path: path,
         sequence: category.sequence,
     });
     newCategory.save(function (mongo_err) {
